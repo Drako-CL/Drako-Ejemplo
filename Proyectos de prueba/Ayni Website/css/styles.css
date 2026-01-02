@@ -51,16 +51,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Justificar todo el texto */
-p,
-.news-excerpt,
-.area-card p,
-.content-text p,
-.lead-text {
-    text-align: justify;
-    text-justify: inter-word;
-}
-
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
