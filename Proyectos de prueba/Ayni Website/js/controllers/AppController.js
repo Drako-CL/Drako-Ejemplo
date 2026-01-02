@@ -8,6 +8,7 @@ class AppController {
         this.navigationView = new NavigationView();
         this.loginView = new LoginView();
         this.contactView = new ContactView();
+        this.teamView = new TeamView();
 
         this.init();
     }

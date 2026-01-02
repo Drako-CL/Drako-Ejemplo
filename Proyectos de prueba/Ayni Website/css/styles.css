@@ -480,6 +480,202 @@ body {
 }
 
 /* ===================================
+   EQUIPO
+   =================================== */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.team-member {
+    background: var(--bg-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    text-align: center;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.team-photo {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.team-member:hover .team-photo img {
+    transform: scale(1.1);
+}
+
+.team-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 77, 46, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.team-member:hover .team-overlay {
+    opacity: 1;
+}
+
+.team-overlay span {
+    color: var(--text-white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: 2px solid var(--accent-gold);
+    border-radius: 8px;
+    background: rgba(212, 175, 55, 0.2);
+}
+
+.team-member h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin: 20px 0 10px;
+    padding: 0 20px;
+}
+
+.team-role {
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 5px 0;
+}
+
+.team-specialty {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Team Profile Modal */
+.team-modal-content {
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.team-profile {
+    padding: 40px;
+}
+
+.profile-header {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.profile-role {
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.profile-specialty {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.profile-contact {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.profile-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.profile-section {
+    margin-bottom: 25px;
+}
+
+.profile-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 10px;
+}
+
+.profile-section p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.profile-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-section ul li {
+    color: var(--text-light);
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.profile-section ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-gold);
+    font-weight: bold;
+}
+
+/* ===================================
    NOTICIAS
    =================================== */
 .news-grid {
@@ -1133,7 +1329,8 @@ body {
     }
 
     .areas-grid,
-    .news-grid {
+    .news-grid,
+    .team-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1148,6 +1345,15 @@ body {
     .contact-items-grid {
         grid-template-columns: 1fr;
     }
+
+    .profile-header {
+        flex-direction: column;
+    }
+
+    .profile-photo {
+        width: 100%;
+        height: 300px;
+    }
 }
 
 @media (max-width: 640px) {
@@ -1161,7 +1367,8 @@ body {
 
     .areas-grid,
     .news-grid,
-    .stats-grid {
+    .stats-grid,
+    .team-grid {
         grid-template-columns: 1fr;
     }
 

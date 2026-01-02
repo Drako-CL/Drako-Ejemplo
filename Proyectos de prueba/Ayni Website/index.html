@@ -91,6 +91,85 @@
         </div>
     </section>
 
+    <!-- Nuestro Equipo Section -->
+    <section id="equipo" class="section equipo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Conócenos</span>
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <p class="section-description">Profesionales altamente capacitados a su servicio</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member" data-member="juan-perez">
+                    <div class="team-photo">
+                        <img src="images/juan-perez.jpg" alt="Juan Pérez">
+                        <div class="team-overlay">
+                            <span>Ver Perfil</span>
+                        </div>
+                    </div>
+                    <h3>Juan Pérez</h3>
+                    <p class="team-role">Socio Director</p>
+                    <p class="team-specialty">Derecho Corporativo</p>
+                </div>
+                <div class="team-member" data-member="maria-gonzalez">
+                    <div class="team-photo">
+                        <img src="images/maria-gonzalez.jpg" alt="María González">
+                        <div class="team-overlay">
+                            <span>Ver Perfil</span>
+                        </div>
+                    </div>
+                    <h3>María González</h3>
+                    <p class="team-role">Socia</p>
+                    <p class="team-specialty">Derecho Laboral</p>
+                </div>
+                <div class="team-member" data-member="carlos-rodriguez">
+                    <div class="team-photo">
+                        <img src="images/carlos-rodriguez.jpg" alt="Carlos Rodríguez">
+                        <div class="team-overlay">
+                            <span>Ver Perfil</span>
+                        </div>
+                    </div>
+                    <h3>Carlos Rodríguez</h3>
+                    <p class="team-role">Socio Senior</p>
+                    <p class="team-specialty">Derecho Civil</p>
+                </div>
+                <div class="team-member" data-member="ana-silva">
+                    <div class="team-photo">
+                        <img src="images/ana-silva.jpg" alt="Ana Silva">
+                        <div class="team-overlay">
+                            <span>Ver Perfil</span>
+                        </div>
+                    </div>
+                    <h3>Ana Silva</h3>
+                    <p class="team-role">Asociada Senior</p>
+                    <p class="team-specialty">Derecho Penal</p>
+                </div>
+                <div class="team-member" data-member="diego-martinez">
+                    <div class="team-photo">
+                        <img src="images/diego-martinez.jpg" alt="Diego Martínez">
+                        <div class="team-overlay">
+                            <span>Ver Perfil</span>
+                        </div>
+                    </div>
+                    <h3>Diego Martínez</h3>
+                    <p class="team-role">Asociado</p>
+                    <p class="team-specialty">Derecho Inmobiliario</p>
+                </div>
+                <div class="team-member" data-member="patricia-lopez">
+                    <div class="team-photo">
+                        <img src="images/patricia-lopez.jpg" alt="Patricia López">
+                        <div class="team-overlay">
+                            <span>Ver Perfil</span>
+                        </div>
+                    </div>
+                    <h3>Patricia López</h3>
+                    <p class="team-role">Asociada</p>
+                    <p class="team-specialty">Derecho de Familia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Organización Section -->
     <section id="organizacion" class="section organizacion">
         <div class="container">
@@ -384,11 +463,22 @@
         </div>
     </div>
 
+    <!-- Team Profile Modal -->
+    <div id="teamModal" class="modal">
+        <div class="modal-content team-modal-content">
+            <span class="modal-close" id="closeTeamModal">&times;</span>
+            <div class="team-profile" id="teamProfile">
+                <!-- Content will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="js/models/UserModel.js"></script>
     <script src="js/views/NavigationView.js"></script>
     <script src="js/views/LoginView.js"></script>
     <script src="js/views/ContactView.js"></script>
+    <script src="js/views/TeamView.js"></script>
     <script src="js/controllers/AppController.js"></script>
     <script src="js/app.js"></script>
 </body>
