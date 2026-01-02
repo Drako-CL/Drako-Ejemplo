@@ -18,6 +18,10 @@ class AppController {
             this.handleLogin(email, password, userType);
         });
 
+        this.loginView.setOnLogout((userType) => {
+            this.handleLogout(userType);
+        });
+
         this.contactView.setOnSubmit((formData) => {
             this.handleContactSubmit(formData);
         });
@@ -46,9 +50,10 @@ class AppController {
             if (user) {
                 // Login exitoso
                 this.loginView.showSuccess(`¡Bienvenido, ${user.nombre}!`, userType);
+                this.loginView.showLoggedIn(userType);
                 this.navigationView.updateLoginButton(true, user.nombre.split(' ')[0]);
 
-                // Redirigir al dashboard correspondiente
+                // Mostrar dashboard
                 setTimeout(() => {
                     this.redirectToDashboard(userType);
                 }, 1500);
@@ -59,6 +64,16 @@ class AppController {
 
             this.loginView.setLoading(false, userType);
         }, 1000);
+    }
+
+    /**
+     * Maneja el cierre de sesión
+     * @param {string} userType - Tipo de usuario
+     */
+    handleLogout(userType) {
+        this.logout();
+        this.loginView.showLoggedOut(userType);
+        alert('Sesión cerrada exitosamente');
     }
 
     /**
@@ -134,24 +149,39 @@ class AppController {
     }
 
     /**
-     * Simula el envío de email de contacto
+     * Envía el formulario de contacto por WhatsApp y Email
      * @param {Object} formData - Datos del formulario
      */
     sendContactEmail(formData) {
-        // En producción, esto haría una llamada a un endpoint que envíe el email
-        console.log('Email enviado a contacto@ayniabogados.cl:', {
-            from: formData.email,
-            subject: `Nueva consulta - ${formData.asunto}`,
-            body: `
-                Nombre: ${formData.nombre}
-                Email: ${formData.email}
-                Teléfono: ${formData.telefono}
-                Área: ${formData.asunto}
-                
-                Mensaje:
-                ${formData.mensaje}
-            `
-        });
+        // Preparar mensaje para WhatsApp
+        const whatsappMessage = `Hola, soy ${formData.nombre}.%0A%0A` +
+            `Email: ${formData.email}%0A` +
+            `Teléfono: ${formData.telefono}%0A` +
+            `Área de consulta: ${formData.asunto}%0A%0A` +
+            `Mensaje:%0A${encodeURIComponent(formData.mensaje)}`;
+
+        // Abrir WhatsApp con el mensaje
+        const whatsappURL = `https://wa.me/56223456789?text=${whatsappMessage}`;
+        window.open(whatsappURL, '_blank');
+
+        // Preparar email
+        const emailSubject = encodeURIComponent(`Nueva consulta - ${formData.asunto}`);
+        const emailBody = encodeURIComponent(
+            `Nombre: ${formData.nombre}\n` +
+            `Email: ${formData.email}\n` +
+            `Teléfono: ${formData.telefono}\n` +
+            `Área: ${formData.asunto}\n\n` +
+            `Mensaje:\n${formData.mensaje}`
+        );
+
+        // Abrir cliente de email
+        const emailURL = `mailto:contacto@ayniabogados.cl?subject=${emailSubject}&body=${emailBody}`;
+        window.location.href = emailURL;
+
+        // Log para desarrollo
+        console.log('Formulario enviado:', formData);
+        console.log('WhatsApp URL:', whatsappURL);
+        console.log('Email URL:', emailURL);
     }
 
     /**

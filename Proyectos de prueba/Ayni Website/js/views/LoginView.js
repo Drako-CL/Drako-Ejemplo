@@ -8,8 +8,11 @@ class LoginView {
         this.tabContents = document.querySelectorAll('.tab-content');
         this.loginAbogadoForm = document.getElementById('loginAbogadoForm');
         this.loginClienteForm = document.getElementById('loginClienteForm');
+        this.btnLogoutAbogado = document.getElementById('btnLogoutAbogado');
+        this.btnLogoutCliente = document.getElementById('btnLogoutCliente');
 
         this.onLoginCallback = null;
+        this.onLogoutCallback = null;
 
         this.init();
     }
@@ -18,6 +21,7 @@ class LoginView {
         this.setupModalControls();
         this.setupTabs();
         this.setupForms();
+        this.setupLogoutButtons();
     }
 
     /**
@@ -224,6 +228,91 @@ class LoginView {
             submitButton.disabled = false;
             submitButton.textContent = userType === 'abogado' ? 'Acceder al Portal' : 'Acceder a Mi Cuenta';
         }
+    }
+
+    /**
+     * Configura los botones de cerrar sesión
+     */
+    setupLogoutButtons() {
+        if (this.btnLogoutAbogado) {
+            this.btnLogoutAbogado.addEventListener('click', () => {
+                this.handleLogout('abogado');
+            });
+        }
+
+        if (this.btnLogoutCliente) {
+            this.btnLogoutCliente.addEventListener('click', () => {
+                this.handleLogout('cliente');
+            });
+        }
+    }
+
+    /**
+     * Maneja el cierre de sesión
+     * @param {string} userType - Tipo de usuario
+     */
+    handleLogout(userType) {
+        if (this.onLogoutCallback) {
+            this.onLogoutCallback(userType);
+        }
+        this.showLoggedOut(userType);
+    }
+
+    /**
+     * Establece el callback para el logout
+     * @param {Function} callback - Función a ejecutar al cerrar sesión
+     */
+    setOnLogout(callback) {
+        this.onLogoutCallback = callback;
+    }
+
+    /**
+     * Muestra el estado de sesión iniciada
+     * @param {string} userType - Tipo de usuario
+     */
+    showLoggedIn(userType) {
+        const form = userType === 'abogado' ? this.loginAbogadoForm : this.loginClienteForm;
+        const submitButton = form.querySelector('button[type="submit"]');
+        const logoutButton = userType === 'abogado' ? this.btnLogoutAbogado : this.btnLogoutCliente;
+        const formInputs = form.querySelectorAll('input, select');
+
+        // Ocultar botón de login y campos
+        submitButton.style.display = 'none';
+        formInputs.forEach(input => {
+            input.parentElement.style.display = 'none';
+        });
+        form.querySelector('.form-options').style.display = 'none';
+
+        // Mostrar botón de logout
+        if (logoutButton) {
+            logoutButton.style.display = 'block';
+        }
+    }
+
+    /**
+     * Muestra el estado de sesión cerrada
+     * @param {string} userType - Tipo de usuario
+     */
+    showLoggedOut(userType) {
+        const form = userType === 'abogado' ? this.loginAbogadoForm : this.loginClienteForm;
+        const submitButton = form.querySelector('button[type="submit"]');
+        const logoutButton = userType === 'abogado' ? this.btnLogoutAbogado : this.btnLogoutCliente;
+        const formInputs = form.querySelectorAll('input, select');
+
+        // Mostrar botón de login y campos
+        submitButton.style.display = 'block';
+        formInputs.forEach(input => {
+            input.parentElement.style.display = 'block';
+        });
+        form.querySelector('.form-options').style.display = 'flex';
+
+        // Ocultar botón de logout
+        if (logoutButton) {
+            logoutButton.style.display = 'none';
+        }
+
+        // Limpiar formularios
+        this.clearForms();
     }
 }
 

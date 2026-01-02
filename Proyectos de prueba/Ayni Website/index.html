@@ -28,8 +28,8 @@
                 <li><a href="#organizacion" class="nav-link">Organización</a></li>
                 <li><a href="#noticias" class="nav-link">Noticias</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                <li><button class="btn-login nav-login-btn" id="btnOpenLogin">Iniciar Sesión</button></li>
             </ul>
-            <button class="btn-login" id="btnOpenLogin">Iniciar Sesión</button>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -351,6 +351,8 @@
                         <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Acceder al Portal</button>
+                    <button type="button" class="btn btn-logout btn-block" id="btnLogoutAbogado"
+                        style="display: none;">Cerrar Sesión</button>
                 </form>
             </div>
             <div class="tab-content" id="cliente-tab">
@@ -371,6 +373,8 @@
                         <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Acceder a Mi Cuenta</button>
+                    <button type="button" class="btn btn-logout btn-block" id="btnLogoutCliente"
+                        style="display: none;">Cerrar Sesión</button>
                     <div class="register-link">
                         <p>¿No tienes cuenta? <a href="#">Regístrate aquí</a></p>
                     </div>
